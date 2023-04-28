@@ -1,0 +1,10 @@
+name: 'Setup Meteor.js environment'
+description: 'Setup a Meteor action with support for automatic version detection.'
+inputs:
+  meteor-version:
+    description: 'Specific Meteor.js version. For example: 2.11.0.'
+  meteor-version-file:
+    description: 'File containing the version Spec of the version to use. For example: .meteor/release'
+runs:
+  using: 'node16'
+  main: 'dist/app.js'
