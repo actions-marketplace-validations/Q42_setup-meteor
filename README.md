@@ -16,6 +16,6 @@ This GitHub Action provides functionality to set up a Meteor environment.
 - uses: EmJee1/setup-meteor@v1
   with:
     meteor-version-file: '.meteor/release'
-    # Or pin a version, this always takes precedence
+    # Or pin a version, this always takes precedence if supplied
     meteor-version: '2.11.0'
 ```
