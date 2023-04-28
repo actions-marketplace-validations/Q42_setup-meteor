@@ -13,7 +13,7 @@ This GitHub Action provides functionality to set up a Meteor environment.
 1. With a Meteor release file
 
 ```yml
-- uses: emjee1/setup-meteor@v1
+- uses: EmJee1/setup-meteor@v1
   with:
     meteor-version-file: '.meteor/release'
     # Or pin a version, this always takes precedence
