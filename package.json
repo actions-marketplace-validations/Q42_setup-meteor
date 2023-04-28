@@ -4,7 +4,7 @@
 	"main": "dist/app.js",
 	"type": "module",
 	"scripts": {
-		"build": "tsc"
+		"build": "ncc build app.ts --license LICENSE -o dist"
 	},
 	"repository": {
 		"type": "git",
