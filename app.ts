@@ -45,7 +45,7 @@ async function getMeteorVersion() {
 	)
 
 	try {
-		await fs.access(versionFilePath, fs.constants.R_OK)
+		await fs.access(versionFilePath, fs.constants.F_OK)
 	} catch (_) {
 		throw new Error(
 			`The specified meteor-version-file is not readable or does not exist at "${versionFilePath}"`
