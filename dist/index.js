@@ -3945,7 +3945,7 @@ async function getMeteorVersion() {
     }
     const versionFilePath = node_path__WEBPACK_IMPORTED_MODULE_3___default().join(process.env.GITHUB_WORKSPACE, versionFileInput);
     try {
-        await node_fs_promises__WEBPACK_IMPORTED_MODULE_2___default().access(versionFilePath, (node_fs_promises__WEBPACK_IMPORTED_MODULE_2___default().constants.F_OK));
+        await node_fs_promises__WEBPACK_IMPORTED_MODULE_2___default().access(versionFilePath, (node_fs_promises__WEBPACK_IMPORTED_MODULE_2___default().constants.R_OK));
     }
     catch (_) {
         throw new Error(`The specified meteor-version-file is not readable or does not exist at "${versionFilePath}"`);
