@@ -3905,52 +3905,51 @@ exports["default"] = _default;
 /***/ }),
 
 /***/ 961:
-/***/ ((module, __unused_webpack___webpack_exports__, __nccwpck_require__) => {
-
-__nccwpck_require__.a(module, async (__webpack_handle_async_dependencies__, __webpack_async_result__) => { try {
-/* harmony import */ var _actions_core__WEBPACK_IMPORTED_MODULE_0__ = __nccwpck_require__(43);
-/* harmony import */ var _actions_core__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__nccwpck_require__.n(_actions_core__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _actions_exec__WEBPACK_IMPORTED_MODULE_1__ = __nccwpck_require__(210);
-/* harmony import */ var _actions_exec__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__nccwpck_require__.n(_actions_exec__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var node_fs_promises__WEBPACK_IMPORTED_MODULE_2__ = __nccwpck_require__(977);
-/* harmony import */ var node_fs_promises__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__nccwpck_require__.n(node_fs_promises__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var node_path__WEBPACK_IMPORTED_MODULE_3__ = __nccwpck_require__(411);
-/* harmony import */ var node_path__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__nccwpck_require__.n(node_path__WEBPACK_IMPORTED_MODULE_3__);
+/***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
 
-
-
-try {
-    const release = await getMeteorVersion();
-    const installUrl = `https://install.meteor.com/?release=${release}`;
-    await (0,_actions_exec__WEBPACK_IMPORTED_MODULE_1__.exec)(`curl ${installUrl} | sh`);
-}
-catch (err) {
-    if (err instanceof Error) {
-        _actions_core__WEBPACK_IMPORTED_MODULE_0___default().setFailed(err.message);
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+const core_1 = __importDefault(__nccwpck_require__(43));
+const exec_1 = __nccwpck_require__(210);
+const promises_1 = __importDefault(__nccwpck_require__(977));
+const node_path_1 = __importDefault(__nccwpck_require__(411));
+async function run() {
+    try {
+        const release = await getMeteorVersion();
+        const installUrl = `https://install.meteor.com/?release=${release}`;
+        await (0, exec_1.exec)(`curl ${installUrl} | sh`);
     }
-    _actions_core__WEBPACK_IMPORTED_MODULE_0___default().setFailed(`Something unexpected went wrong: ${err}`);
+    catch (err) {
+        if (err instanceof Error) {
+            core_1.default.setFailed(err.message);
+        }
+        core_1.default.setFailed(`Something unexpected went wrong: ${err}`);
+    }
 }
+void run();
 async function getMeteorVersion() {
-    const versionInput = _actions_core__WEBPACK_IMPORTED_MODULE_0___default().getInput('meteor-version');
-    const versionFileInput = _actions_core__WEBPACK_IMPORTED_MODULE_0___default().getInput('meteor-version-file');
+    const versionInput = core_1.default.getInput('meteor-version');
+    const versionFileInput = core_1.default.getInput('meteor-version-file');
     if (!versionFileInput && !versionInput) {
         throw new Error('Received no meteor-version or meteor-version-file input, specifying a version is required');
     }
     if (versionFileInput && versionInput) {
-        _actions_core__WEBPACK_IMPORTED_MODULE_0___default().warning('Both meteor-version and meteor-version-file inputs are specified, only meteor-version will be used');
+        core_1.default.warning('Both meteor-version and meteor-version-file inputs are specified, only meteor-version will be used');
     }
     if (versionInput) {
         return versionInput;
     }
-    const versionFilePath = node_path__WEBPACK_IMPORTED_MODULE_3___default().join(process.env.GITHUB_WORKSPACE, versionFileInput);
+    const versionFilePath = node_path_1.default.join(process.env.GITHUB_WORKSPACE, versionFileInput);
     try {
-        await node_fs_promises__WEBPACK_IMPORTED_MODULE_2___default().access(versionFilePath, (node_fs_promises__WEBPACK_IMPORTED_MODULE_2___default().constants.R_OK));
+        await promises_1.default.access(versionFilePath, promises_1.default.constants.R_OK);
     }
     catch (_) {
         throw new Error(`The specified meteor-version-file is not readable or does not exist at "${versionFilePath}"`);
     }
-    const fileContents = await node_fs_promises__WEBPACK_IMPORTED_MODULE_2___default().readFile(versionFilePath, 'utf-8');
+    const fileContents = await promises_1.default.readFile(versionFilePath, 'utf-8');
     const [, version] = fileContents.split('@');
     if (!version) {
         throw new Error(`The meteor-version-file does not contain a valid version, received: ${version}`);
@@ -3958,8 +3957,6 @@ async function getMeteorVersion() {
     return version;
 }
 
-__webpack_async_result__();
-} catch(e) { __webpack_async_result__(e); } }, 1);
 
 /***/ }),
 
@@ -4108,104 +4105,6 @@ module.exports = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("util");
 /******/ }
 /******/ 
 /************************************************************************/
-/******/ /* webpack/runtime/async module */
-/******/ (() => {
-/******/ 	var webpackQueues = typeof Symbol === "function" ? Symbol("webpack queues") : "__webpack_queues__";
-/******/ 	var webpackExports = typeof Symbol === "function" ? Symbol("webpack exports") : "__webpack_exports__";
-/******/ 	var webpackError = typeof Symbol === "function" ? Symbol("webpack error") : "__webpack_error__";
-/******/ 	var resolveQueue = (queue) => {
-/******/ 		if(queue && !queue.d) {
-/******/ 			queue.d = 1;
-/******/ 			queue.forEach((fn) => (fn.r--));
-/******/ 			queue.forEach((fn) => (fn.r-- ? fn.r++ : fn()));
-/******/ 		}
-/******/ 	}
-/******/ 	var wrapDeps = (deps) => (deps.map((dep) => {
-/******/ 		if(dep !== null && typeof dep === "object") {
-/******/ 			if(dep[webpackQueues]) return dep;
-/******/ 			if(dep.then) {
-/******/ 				var queue = [];
-/******/ 				queue.d = 0;
-/******/ 				dep.then((r) => {
-/******/ 					obj[webpackExports] = r;
-/******/ 					resolveQueue(queue);
-/******/ 				}, (e) => {
-/******/ 					obj[webpackError] = e;
-/******/ 					resolveQueue(queue);
-/******/ 				});
-/******/ 				var obj = {};
-/******/ 				obj[webpackQueues] = (fn) => (fn(queue));
-/******/ 				return obj;
-/******/ 			}
-/******/ 		}
-/******/ 		var ret = {};
-/******/ 		ret[webpackQueues] = x => {};
-/******/ 		ret[webpackExports] = dep;
-/******/ 		return ret;
-/******/ 	}));
-/******/ 	__nccwpck_require__.a = (module, body, hasAwait) => {
-/******/ 		var queue;
-/******/ 		hasAwait && ((queue = []).d = 1);
-/******/ 		var depQueues = new Set();
-/******/ 		var exports = module.exports;
-/******/ 		var currentDeps;
-/******/ 		var outerResolve;
-/******/ 		var reject;
-/******/ 		var promise = new Promise((resolve, rej) => {
-/******/ 			reject = rej;
-/******/ 			outerResolve = resolve;
-/******/ 		});
-/******/ 		promise[webpackExports] = exports;
-/******/ 		promise[webpackQueues] = (fn) => (queue && fn(queue), depQueues.forEach(fn), promise["catch"](x => {}));
-/******/ 		module.exports = promise;
-/******/ 		body((deps) => {
-/******/ 			currentDeps = wrapDeps(deps);
-/******/ 			var fn;
-/******/ 			var getResult = () => (currentDeps.map((d) => {
-/******/ 				if(d[webpackError]) throw d[webpackError];
-/******/ 				return d[webpackExports];
-/******/ 			}))
-/******/ 			var promise = new Promise((resolve) => {
-/******/ 				fn = () => (resolve(getResult));
-/******/ 				fn.r = 0;
-/******/ 				var fnQueue = (q) => (q !== queue && !depQueues.has(q) && (depQueues.add(q), q && !q.d && (fn.r++, q.push(fn))));
-/******/ 				currentDeps.map((dep) => (dep[webpackQueues](fnQueue)));
-/******/ 			});
-/******/ 			return fn.r ? promise : getResult();
-/******/ 		}, (err) => ((err ? reject(promise[webpackError] = err) : outerResolve(exports)), resolveQueue(queue)));
-/******/ 		queue && (queue.d = 0);
-/******/ 	};
-/******/ })();
-/******/ 
-/******/ /* webpack/runtime/compat get default export */
-/******/ (() => {
-/******/ 	// getDefaultExport function for compatibility with non-harmony modules
-/******/ 	__nccwpck_require__.n = (module) => {
-/******/ 		var getter = module && module.__esModule ?
-/******/ 			() => (module['default']) :
-/******/ 			() => (module);
-/******/ 		__nccwpck_require__.d(getter, { a: getter });
-/******/ 		return getter;
-/******/ 	};
-/******/ })();
-/******/ 
-/******/ /* webpack/runtime/define property getters */
-/******/ (() => {
-/******/ 	// define getter functions for harmony exports
-/******/ 	__nccwpck_require__.d = (exports, definition) => {
-/******/ 		for(var key in definition) {
-/******/ 			if(__nccwpck_require__.o(definition, key) && !__nccwpck_require__.o(exports, key)) {
-/******/ 				Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
-/******/ 			}
-/******/ 		}
-/******/ 	};
-/******/ })();
-/******/ 
-/******/ /* webpack/runtime/hasOwnProperty shorthand */
-/******/ (() => {
-/******/ 	__nccwpck_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
-/******/ })();
-/******/ 
 /******/ /* webpack/runtime/compat */
 /******/ 
 /******/ if (typeof __nccwpck_require__ !== 'undefined') __nccwpck_require__.ab = new URL('.', import.meta.url).pathname.slice(import.meta.url.match(/^file:\/\/\/\w:/) ? 1 : 0, -1) + "/";
@@ -4214,7 +4113,6 @@ module.exports = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("util");
 /******/ 
 /******/ // startup
 /******/ // Load entry module and return exports
-/******/ // This entry module used 'module' so it can't be inlined
+/******/ // This entry module is referenced by other modules so it can't be inlined
 /******/ var __webpack_exports__ = __nccwpck_require__(961);
-/******/ __webpack_exports__ = await __webpack_exports__;
 /******/ 

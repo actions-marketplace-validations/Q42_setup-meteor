@@ -3,17 +3,21 @@ import { exec } from '@actions/exec'
 import fs from 'node:fs/promises'
 import path from 'node:path'
 
-try {
-	const release = await getMeteorVersion()
-	const installUrl = `https://install.meteor.com/?release=${release}`
-	await exec(`curl ${installUrl} | sh`)
-} catch (err) {
-	if (err instanceof Error) {
-		core.setFailed(err.message)
-	}
+async function run() {
+	try {
+		const release = await getMeteorVersion()
+		const installUrl = `https://install.meteor.com/?release=${release}`
+		await exec(`curl ${installUrl} | sh`)
+	} catch (err) {
+		if (err instanceof Error) {
+			core.setFailed(err.message)
+		}
 
-	core.setFailed(`Something unexpected went wrong: ${err}`)
+		core.setFailed(`Something unexpected went wrong: ${err}`)
+	}
 }
+
+void run()
 
 async function getMeteorVersion() {
 	const versionInput = core.getInput('meteor-version')
