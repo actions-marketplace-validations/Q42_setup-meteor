@@ -7,7 +7,7 @@ async function run() {
 	try {
 		const release = await getMeteorVersion()
 		const installUrl = `https://install.meteor.com/?release=${release}`
-		await exec(`curl ${installUrl} | sh`)
+		await exec(`curl "${installUrl}" | sh`)
 	} catch (err) {
 		if (err instanceof Error) {
 			core.setFailed(err.message)
