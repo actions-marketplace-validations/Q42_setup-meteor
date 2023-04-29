@@ -3967,7 +3967,7 @@ async function getMeteorVersion() {
     }
     const versionFilePath = node_path_1.default.join(process.env.GITHUB_WORKSPACE, versionFileInput);
     try {
-        await promises_1.default.access(versionFilePath, promises_1.default.constants.R_OK);
+        await promises_1.default.access(versionFilePath, promises_1.default.constants.F_OK);
     }
     catch (_) {
         throw new Error(`The specified meteor-version-file is not readable or does not exist at "${versionFilePath}"`);
