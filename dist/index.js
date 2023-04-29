@@ -3937,7 +3937,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 const core = __importStar(__nccwpck_require__(43));
 const exec_1 = __nccwpck_require__(210);
-const fs = __importStar(__nccwpck_require__(977));
+const promises_1 = __nccwpck_require__(977);
 const node_path_1 = __importDefault(__nccwpck_require__(411));
 async function run() {
     try {
@@ -3968,13 +3968,13 @@ async function getMeteorVersion() {
     }
     const versionFilePath = node_path_1.default.join(process.env.GITHUB_WORKSPACE, versionFileInput);
     // try {
-    await fs.access(versionFilePath, fs.constants.F_OK);
+    await (0, promises_1.access)(versionFilePath, promises_1.constants.F_OK);
     // } catch (_) {
     // 	throw new Error(
     // 		`The specified meteor-version-file is not readable or does not exist at "${versionFilePath}"`
     // 	)
     // }
-    const fileContents = await fs.readFile(versionFilePath, 'utf-8');
+    const fileContents = await (0, promises_1.readFile)(versionFilePath, 'utf-8');
     const [, version] = fileContents.split('@');
     if (!version) {
         throw new Error(`The meteor-version-file does not contain a valid version, received: ${version}`);
