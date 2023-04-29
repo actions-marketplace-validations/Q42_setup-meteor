@@ -3942,6 +3942,7 @@ const node_path_1 = __importDefault(__nccwpck_require__(411));
 async function run() {
     try {
         const release = await getMeteorVersion();
+        core.info(`Installing Meteor ${release}`);
         const installUrl = `https://install.meteor.com/?release=${release}`;
         await (0, exec_1.exec)(`curl "${installUrl}" | sh`);
     }

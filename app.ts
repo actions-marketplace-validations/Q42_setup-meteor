@@ -6,6 +6,7 @@ import path from 'node:path'
 async function run() {
 	try {
 		const release = await getMeteorVersion()
+		core.info(`Installing Meteor ${release}`)
 		const installUrl = `https://install.meteor.com/?release=${release}`
 		await exec(`curl "${installUrl}" | sh`)
 	} catch (err) {
