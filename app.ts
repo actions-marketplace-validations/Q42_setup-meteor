@@ -1,6 +1,6 @@
 import * as core from '@actions/core'
 import { exec } from '@actions/exec'
-import { access, readFile, constants } from 'node:fs/promises'
+import * as fs from 'node:fs/promises'
 import path from 'node:path'
 
 async function run() {
@@ -46,14 +46,14 @@ async function getMeteorVersion() {
 	)
 
 	// try {
-	await access(versionFilePath, constants.F_OK)
+	await fs.access(versionFilePath, fs.constants.F_OK)
 	// } catch (_) {
 	// 	throw new Error(
 	// 		`The specified meteor-version-file is not readable or does not exist at "${versionFilePath}"`
 	// 	)
 	// }
 
-	const fileContents = await readFile(versionFilePath, 'utf-8')
+	const fileContents = await fs.readFile(versionFilePath, 'utf-8')
 	const [, version] = fileContents.split('@')
 	if (!version) {
 		throw new Error(
