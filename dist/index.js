@@ -3944,7 +3944,7 @@ async function run() {
         const release = await getMeteorVersion();
         core.info(`Installing Meteor ${release}`);
         const installUrl = `https://install.meteor.com/?release=${release}`;
-        await (0, exec_1.exec)(`curl "${installUrl}" | sh`);
+        await (0, exec_1.exec)(`curl "${installUrl}"`);
     }
     catch (err) {
         if (err instanceof Error) {
