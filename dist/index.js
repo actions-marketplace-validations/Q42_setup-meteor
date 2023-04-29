@@ -3943,7 +3943,7 @@ async function run() {
     try {
         const release = await getMeteorVersion();
         const installUrl = `https://install.meteor.com/?release=${release}`;
-        await (0, exec_1.exec)(`curl ${installUrl} | sh`);
+        await (0, exec_1.exec)(`curl "${installUrl}" | sh`);
     }
     catch (err) {
         if (err instanceof Error) {
@@ -3968,7 +3968,7 @@ async function getMeteorVersion() {
     }
     const versionFilePath = node_path_1.default.join(process.env.GITHUB_WORKSPACE, versionFileInput);
     // try {
-    // 	await fs.access(versionFilePath, fs.constants.F_OK)
+    await promises_1.default.access(versionFilePath, promises_1.default.constants.F_OK);
     // } catch (_) {
     // 	throw new Error(
     // 		`The specified meteor-version-file is not readable or does not exist at "${versionFilePath}"`
