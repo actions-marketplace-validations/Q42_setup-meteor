@@ -7,7 +7,7 @@ inputs:
     description: 'File containing the version Spec of the version to use. For example: .meteor/release.'
 runs:
   using: 'node16'
-  main: 'dist/app.js'
+  main: 'dist/index.js'
 branding:
   icon: 'play'
   color: 'orange'
