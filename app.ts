@@ -11,6 +11,7 @@ async function run() {
 	} catch (err) {
 		if (err instanceof Error) {
 			core.setFailed(err.message)
+			return
 		}
 
 		core.setFailed(`Something unexpected went wrong: ${err}`)
