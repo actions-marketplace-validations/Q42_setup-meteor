@@ -9,7 +9,6 @@ async function run() {
 		core.info(`Installing Meteor ${release}`)
 		const installUrl = `https://install.meteor.com/?release=${release}`
 		const curlCommand = `curl "${installUrl}" | sh`
-		core.info('Test...')
 		core.info(curlCommand)
 		await execSync(curlCommand)
 	} catch (err) {
