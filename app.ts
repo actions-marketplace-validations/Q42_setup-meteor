@@ -57,7 +57,7 @@ async function getMeteorVersion() {
 	}
 
 	const fileContents = await fs.readFile(versionFilePath, 'utf-8')
-	const [, version] = fileContents.split('@')
+	const [, version] = fileContents.trim().split('@')
 	if (!version) {
 		throw new Error(
 			`The meteor-version-file does not contain a valid version, received: ${version}`
