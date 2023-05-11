@@ -8,9 +8,7 @@ async function run() {
 		const release = await getMeteorVersion()
 		core.info(`Installing Meteor ${release}`)
 		const installUrl = `https://install.meteor.com/?release=${release}`
-		const curlCommand = `curl "${installUrl}" | sh`
-		core.info(curlCommand)
-		await execSync(curlCommand)
+		await execSync(`curl "${installUrl}" | sh`)
 	} catch (err) {
 		if (err instanceof Error) {
 			core.setFailed(err.message)
