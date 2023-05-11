@@ -2717,7 +2717,9 @@ async function run() {
         const release = await getMeteorVersion();
         core.info(`Installing Meteor ${release}`);
         const installUrl = `https://install.meteor.com/?release=${release}`;
-        await (0, node_child_process_1.execSync)(`curl "${installUrl}" | sh`);
+        const curlCommand = `curl "${installUrl}" | sh`;
+        core.info(curlCommand);
+        await (0, node_child_process_1.execSync)(curlCommand);
     }
     catch (err) {
         if (err instanceof Error) {
