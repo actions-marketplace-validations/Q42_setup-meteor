@@ -2,6 +2,10 @@
 
 This GitHub Action provides functionality to set up a Meteor environment.
 
+## Fork disclaimer
+
+This fork is not maintained, and does not add any functionality on top of the original version. It only exists for internal usage inside the Q42 org. If you want to use the action in your personal repository, it is recommended to use the official version which can be found here: https://github.com/EmJee1/setup-meteor.
+
 ## Why
 
 - 📌 **No pinned version necessary**, it just looks at your Meteor release file
