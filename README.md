@@ -17,7 +17,7 @@ This fork is not maintained, and does not add any functionality on top of the or
 1. With a Meteor release file
 
 ```yml
-- uses: Q42/setup-meteor@v1
+- uses: Q42/setup-meteor@v1.0.0
   with:
     meteor-version-file: '.meteor/release'
     # Or pin a version, this always takes precedence if supplied
