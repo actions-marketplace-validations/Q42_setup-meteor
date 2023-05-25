@@ -1,4 +1,4 @@
-name: 'Setup a Meteor.js environment'
+name: 'Setup a Meteor.js environment for Q42 projects'
 description: 'Setup a Meteor action with support for automatic version detection.'
 inputs:
   meteor-version:
